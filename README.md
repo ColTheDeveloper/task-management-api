@@ -6,9 +6,8 @@ The Task Management API is a RESTful API built with Node.js and Express.js that 
 ## Project Setup Instructions
 
 ### Prerequisites
-- Node.js (v14.x or higher)
-- npm (v6.x or higher)
-- PostgreSQL
+- Docker
+- Docker Compose
 
 ### Installation
 
@@ -18,34 +17,25 @@ The Task Management API is a RESTful API built with Node.js and Express.js that 
     cd task-management-api
     ```
 
-2. Install dependencies:
-    ```sh
-    npm install
-    ```
-
-3. Set up environment variables:
-    Create a [.env](http://_vscodecontentref_/2) file in the root directory and add the following environment variables:
+2. Create an [.env](http://_vscodecontentref_/1) file in the root directory and add the following environment variables:
     ```env
-    NODE_ENV=development
-    PORT=5000
-    DATABASE_URL=your_database_url
-    JWT_SECRET=your_jwt_secret
-    REFRESH_TOKEN_SECRET=your_refresh_token_secret
-    ACCESS_TOKEN_SECRET=your_access_token_secret
-    BACKEND_URL=http://localhost:5000
+    DB_USER=admin
+    DB_PASSWORD=90700675
+    DB_DATABASE=taskdb
+    ACCESS_TOKEN_SECRET=KLFJPMC2I4U987549RYGCB3H42I9U89Y7394
+    REFRESH_TOKEN_SECRET=kbfioiejiuryyuwuedbdsjnk
+    EMAIL_USER=your_email_user
+    EMAIL_PASS=your_email_password
     ```
 
-4. Run database migrations:
+3. Build and start the Docker containers:
     ```sh
-    npm run migrate
+    docker-compose --env-file .env up --build
     ```
 
-5. Start the server:
-    ```sh
-    npm start
-    ```
+4. The API will be available at `http://localhost:2300`.
 
 ### Running Tests
 To run the tests, use the following command:
 ```sh
-npm test
+docker-compose run app npm test

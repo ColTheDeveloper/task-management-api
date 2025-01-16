@@ -593,12 +593,12 @@
                                         "type": "string",
                                         "example": "123456"
                                     },
-                                    "new_password": {
+                                    "password": {
                                         "type": "string",
                                         "example": "newPassword123"
                                     }
                                 },
-                                "required": ["email", "otp", "new_password"]
+                                "required": ["email", "otp", "password"]
                             }
                         }
                     }
