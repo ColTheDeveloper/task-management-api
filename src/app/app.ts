@@ -5,8 +5,6 @@ import { globalErrorHandler, routeNotFound } from "../middlewares/errorMiddlewar
 import cookieParser from "cookie-parser"
 import authRoute from "../routes/authRoutes"
 import taskRoute from "../routes/taskRoutes"
-import createTaskTable from "../data/createTaskTable"
-import createUserTable from "../data/createUserTable"
 import swaggerSetup from "../config/swagger"
 
 
@@ -22,8 +20,6 @@ swaggerSetup(app)
 app.use("/api/v1/auth",authRoute)
 app.use("/api/v1/tasks",taskRoute)
 
-createTaskTable()
-createUserTable()
 
 app.use(routeNotFound)
 app.use(globalErrorHandler)
