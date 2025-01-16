@@ -28,7 +28,7 @@ The Task Management API is a RESTful API built with Node.js and Express.js that 
     EMAIL_PASS=your_email_password
     ```
 
-    For the email to send, EMAIL_PASS is not a normal password, it's an application specific password. EMAIL_USER can only be a gmail
+    For sending mails, `EMAIL_PASS` should be an application-specific password, not a regular password. Note that `EMAIL_USER` must be a Gmail address.
 
 3. Build and start the Docker containers:
     ```sh
