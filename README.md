@@ -13,20 +13,22 @@ The Task Management API is a RESTful API built with Node.js and Express.js that 
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/your-username/task-management-api.git
+    git clone https://github.com/colthedeveloper/task-management-api.git
     cd task-management-api
     ```
 
 2. Create an [.env](http://_vscodecontentref_/1) file in the root directory and add the following environment variables:
     ```env
-    DB_USER=admin
-    DB_PASSWORD=90700675
-    DB_DATABASE=taskdb
-    ACCESS_TOKEN_SECRET=KLFJPMC2I4U987549RYGCB3H42I9U89Y7394
-    REFRESH_TOKEN_SECRET=kbfioiejiuryyuwuedbdsjnk
+    DB_USER= db_user
+    DB_PASSWORD= password
+    DB_DATABASE= database
+    ACCESS_TOKEN_SECRET= access_token_secret
+    REFRESH_TOKEN_SECRET= refresh_token_secret
     EMAIL_USER=your_email_user
     EMAIL_PASS=your_email_password
     ```
+
+    For the email to send, EMAIL_PASS is not a normal password, it's an application specific password. EMAIL_USER can only be a gmail
 
 3. Build and start the Docker containers:
     ```sh
@@ -47,10 +49,10 @@ To run the tests, use the following command:
     - Can create, update, delete, and fetch their own tasks.
   - **Admin**:
     - Can create, update, delete, and fetch their own tasks.
-    - Can create, update, delete, and fetch tasks for other users.
+    - Can update, delete, and fetch tasks for other users.
   - **Manager**:
     - Can create, update, and fetch their own tasks.
-    - Can create, update, and fetch tasks for other users.
+    - Can update, and fetch tasks for other users.
     - Cannot delete tasks for other users, only their own tasks.
 
 - **Permissions**:
@@ -121,6 +123,44 @@ This section outlines the role-based access control (RBAC) implemented in the Ta
         "success": true,
         "message": "User verified successfully",
         "data": null
+    }
+    ```
+
+#### GET OTP TO RESET PASSOWORD
+- **Endpoint**: `POST /api/v1/auth/get-reset-password-otp`
+- **Description**: Get otp to reset user password.
+- **Request Body**:
+    ```json
+    {
+        "email": "tester@tester.com",
+    }
+    ```
+- **Response**:
+    ```json
+    {
+        "success":true,
+        "message":"Reset password OTP has been sent to your email address",
+        "data":null
+    }
+    ```
+
+#### RESET PASSOWORD
+- **Endpoint**: `POST /api/v1/auth/reset-password`
+- **Description**: Reset the user password.
+- **Request Body**:
+    ```json
+    {
+        "email": "tester@tester.com",
+        "otp":"123456",
+        "password":"password"
+    }
+    ```
+- **Response**:
+    ```json
+    {
+        "success":true,
+        "message":"Password reset successfully",
+        "data":null
     }
     ```
 
@@ -322,7 +362,8 @@ This section outlines the role-based access control (RBAC) implemented in the Ta
   - Unit tests and integration tests using Jest and Supertest.
   - Docker Compose setup for running tests in a containerized environment.
 
-- **About RBAC**:
-  - Users can create, update, delete, and fetch tasks as long as there are authorized.
-  -Admin can also create task for theirself, update, delete and fetch their task or others task.
-  -Manager can also create task for theirself, update, and fetch their task or others task but manager cannot delete others task, only theirs.
+- **API Documentation with Swagger**:
+  - Comprehensive API documentation is available using Swagger.
+  - Access the API documentation at `http://localhost:2300/docs`.
+
+
