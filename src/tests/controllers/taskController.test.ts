@@ -95,11 +95,11 @@ describe('Task Controller', () => {
             ];
 
             (pool.query as jest.Mock).mockResolvedValueOnce({ rows: mockTasks });
-            console.log(mockTasks)
+             (mockTasks)
             const response = await request(app)
                 .get('/api/v1/tasks/user')
                 .set('Authorization', `Bearer ${token}`);
-                console.log(response.body)
+
             expect(response.status).toBe(200);
             expect(response.body).toEqual({
                 success: true,
@@ -157,7 +157,7 @@ describe('Task Controller', () => {
                 .set('Authorization', `Bearer ${token}`);
 
             expect(response.status).toBe(200);
-            console.log(response.body.data)
+
             expect(response.body).toEqual({
                 success: true,
                 message: "Task updated successfully",

@@ -40,7 +40,7 @@ export const signupUser= async (req:Request, res:Response,next:NextFunction) => 
             data:null
         })
     } catch (error) {
-        console.log(error)
+         
         next(error)
     }
 }
@@ -53,7 +53,7 @@ export const signinUser= async(req:Request, res:Response,next:NextFunction) => {
             return next(createError(404,"Invalid credentials"))
         }
 
-        console.log(result.rows)
+         
 
         const isMatch= await bcrypt.compare(password,result.rows[0].password)
         if(!isMatch){
@@ -92,7 +92,7 @@ export const signinUser= async(req:Request, res:Response,next:NextFunction) => {
             data:accessToken
         })
     } catch (error) {
-        console.log(error)
+         
         next(error)
     }
 }
@@ -109,7 +109,7 @@ export const verifyUser= async(req:Request, res:Response,next:NextFunction) => {
             data:null
         })
     } catch (error) {
-        console.log(error)
+         
         next(createError(400,"Invalid token"))
     }
 }
@@ -122,7 +122,7 @@ export const getResetPasswordOtp= async(req:Request, res:Response,next:NextFunct
             return next(createError(404,"Invalid credentials"))
         }
 
-        console.log(result.rows)
+         
 
         const user=result.rows[0]
 
@@ -144,7 +144,7 @@ export const getResetPasswordOtp= async(req:Request, res:Response,next:NextFunct
             data:null
         })
     } catch (error) {
-        console.log(error)
+         
         next(error)
     }
 }
@@ -166,14 +166,14 @@ export const resetPassword=async(req:Request, res:Response,next:NextFunction)=>{
             data:null
         })
     } catch (error) {
-        console.log(error)
+         
         next(error)
     }
 }
 
 
 export const refreshToken= async(req:Request, res:Response,next:NextFunction) => {
-    console.log(req.cookies)
+
     const refreshToken=req.cookies.refreshToken
     if(!refreshToken) return next(createError(401,"Unauthorized"))
 
@@ -189,7 +189,6 @@ export const refreshToken= async(req:Request, res:Response,next:NextFunction) =>
             data:accessToken
         })
     } catch (error) {
-        console.log(error)
         next(createError(401,"Unauthorized"))
     }
 }

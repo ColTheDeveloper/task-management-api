@@ -194,7 +194,7 @@ export const getUserTasks=async(req:Request,res:Response,next:NextFunction)=>{
         }
 
     } catch (error) {
-        console.log(error)
+         
         next(error)
     }
 }
@@ -227,7 +227,7 @@ export const updateTaskStatus=async(req:Request,res:Response,next:NextFunction)=
     const {status,title,description,due_date}=req.body
     const taskId=req.params.taskId
     const userRole=req.userRole
-    console.log(userRole)
+    
     try {
         const getTaskResult = await pool.query("SELECT * FROM tasks WHERE id=$1",[taskId])
         const task=getTaskResult.rows[0]

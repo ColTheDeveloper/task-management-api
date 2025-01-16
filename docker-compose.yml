@@ -35,5 +35,21 @@ services:
       POSTGRES_DB: taskdb
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-
-
+  test:
+    build: .
+    container_name: task_management_api_test
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PORT: 5432
+      DB_DATABASE: ${DB_DATABASE}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: postgres
+      ACCESS_TOKEN_SECRET: ${ACCESS_TOKEN_SECRET}
+      REFRESH_TOKEN_SECRET: ${REFRESH_TOKEN_SECRET}
+      BACKEND_URL: http://localhost:2300
+      EMAIL_USER: ${EMAIL_USER}
+      EMAIL_PASS: ${EMAIL_PASS}
+    depends_on:
+      db:
+        condition: service_healthy
+    command: ["npm", "test"]
